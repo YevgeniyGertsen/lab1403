@@ -1,0 +1,111 @@
+#include<iostream>
+#include<locale.h>
+#include"Header.h"
+#include<time.h>
+#include<stdio.h>
+
+using namespace std;
+
+
+void main()
+{
+	setlocale(LC_ALL, "rus");
+	srand(time(NULL));
+	int n, exit;
+	do
+	{
+		printf("please enter exemple: ");
+		scanf("%d", &n);
+		switch (n)
+		{
+		case 1:
+		{
+			/*1.	Дана строка из нескольких слов.
+				Слова отделяются друг от друга пробелами или запятыми.
+				Вывести слова, начинающиеся и заканчивающиеся одной
+				и той же буквой.*/
+			char mas[] = "Автотрасса Москва - Алма-Ата, как я по ней ехал";
+			dinstr(mas, strlen(mas));
+
+		}
+		break;
+		case 2:
+		{
+			char * a = "<i>", *b = "<#>";
+			char * m = "<i><body><hr><ul><i>Чебурашка</i><i>Крокодил Гена</i><i>Шапокляк</i><i>Крыса Лариса</i></ul><hr></body>";
+			replacestr(m, a, b);
+
+			printf("After replace : %s \n", m);
+		}
+		break;
+		case 3:
+		{
+			/*4.	Дан массив символов, содержащий текст.
+				Определить длину содержащейся в нем максимальной
+				серии символов, отличных от букв.*/
+			char * mas = "Дан массив 1 1 символов, содержащий текст.111 Определить 111111 длину содержащейся 1111 в нем максимальной ";
+			int count = 0, max = 0;
+			for (int i = 0;i < strlen(mas);i++)
+			{
+				//printf("%d - %c\n", (int)mas[i], mas[i]);
+				if ((int)mas[i] >= 48 && (int)mas[i] <= 57)
+					count++;
+				else
+				{
+					if (max < count)
+						max = count;
+					count = 0;
+				}
+
+			}
+			printf("%s \n", mas);
+			printf("Max = %d \n", max);
+		}
+		break;
+		case 4:
+		{
+			/*6.	Дан массив символов.Указать те слова, 
+				которые содержат хотя бы одну букву k.*/
+			char *str = "Дан мkассив символов . Укаkзать те слова.";
+			char * word = (char*)calloc(50, sizeof(char));
+
+			int n = 0, kon = 0, ws = 0;
+			while (kon < strlen(str))
+			{
+				
+				while (str[kon] != ' '&&str[kon] != ',')
+				{
+					if (kon != strlen(str))
+						kon++;
+					else break;
+
+				}
+				for (int i = n;i < kon;i++)
+				{
+					word[ws] = str[i];
+					ws++;
+				}
+				word[ws] = '\0';
+
+				for (int i = 0;i < strlen(word);i++)
+				{
+					if (word[i] == 'k')
+					{
+						printf("%s \n", word);
+						break;
+					}
+				}
+				n = kon + 1;
+				if (str[kon] != ' ' || str[kon] != ',') kon++;
+				ws = 0;
+			}
+		}
+		break;
+		default:printf("No exemple\n");
+			break;
+		}
+		printf("Продолжить? 1-Yes 2-No:");
+		scanf("%d", &exit);
+		printf("\n");
+	} while (exit == 1);
+}
