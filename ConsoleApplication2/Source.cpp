@@ -3,6 +3,7 @@
 #include"Header.h"
 #include<time.h>
 #include<stdio.h>
+#include<windows.h>
 
 using namespace std;
 
@@ -26,6 +27,8 @@ void main()
 	//return;
 
 	setlocale(LC_ALL, "rus");
+	SetConsoleCP(1251);
+	SetConsoleOutputCP(1251);
 	srand(time(NULL));
 	int n, exit;
 	do
@@ -50,7 +53,7 @@ void main()
 			char * a = "<i>", *b = "</#>";
 			char * m = createDunamicChar(150);
 			strcpy(m, "<i><body><hr><ul><i>Чебурашка</i><i>Крокодил Гена</i><i>Шапокляк</i><i>Крыса Лариса</i></ul><hr></body>");
-			
+
 			printf("\n Before replace : %s \n", m);
 
 			replacestr(m, a, b);
@@ -84,7 +87,7 @@ void main()
 		break;
 		case 4:
 		{
-			/*6.	Дан массив символов.Указать те слова, 
+			/*6.	Дан массив символов.Указать те слова,
 				которые содержат хотя бы одну букву k.*/
 			char *str = "Дан мkассив символов . Укаkзать те слова.";
 			char * word = (char*)calloc(50, sizeof(char));
@@ -92,7 +95,7 @@ void main()
 			int n = 0, kon = 0, ws = 0;
 			while (kon < strlen(str))
 			{
-				
+
 				while (str[kon] != ' '&&str[kon] != ',')
 				{
 					if (kon != strlen(str))
@@ -123,7 +126,7 @@ void main()
 		break;
 		case 5:
 		{
-			/*7.	Дан массив символов, содержащий текст.В строке между 
+			/*7.	Дан массив символов, содержащий текст.В строке между
 			словами вставить вместо пробела запятую и пробел*/
 			char *str = (char*)malloc(107 * sizeof(char));
 			strcpy(str, "7. Дан массив символов, содержащий текст. В строке между словами вставить вместо пробела запятую и пробел");
@@ -132,15 +135,36 @@ void main()
 		break;
 		case 6:
 		{
-			/*8. Массив не более чем из 100 символов, содержащий 
-			произвольный русский текст. Написать, какие буквы и сколько 
-			раз встречаются в этом тексте.Ответ должен приводиться в 
-			грамматически правильной форме, например, а – 5 раз, к – 7 
+			/*8. Массив не более чем из 100 символов, содержащий
+			произвольный русский текст. Написать, какие буквы и сколько
+			раз встречаются в этом тексте.Ответ должен приводиться в
+			грамматически правильной форме, например, а – 5 раз, к – 7
 			раз и т.д.*/
-			char*str= "Массив не более чем из 100 символов, содержащий";
-			int r=0;
+
+			char*str = (char*)calloc(10 * sizeof(char),sizeof(char));
+			int r = 0;
+			cin.get();
 			printf("Введите строку \n");
-			scanf("%s",str);
+			
+
+			fgets(str,10,stdin);
+
+			printf("\n%s\n", str);
+
+
+			/*printf("%d", (int)str[r]);*/
+			/*while (true)
+			{
+				if ((int)str[r] == 10|| (int)str[r] == 13)
+					break;
+				
+				if (r > 10)
+					str = (char*)realloc(str, sizeof(char)*r + 1);
+				r++;
+				printf("%c-%d\n", str[r - 1], str[r - 1]);
+			}*/
+			//while ((int)str[r-1] != 10);
+
 			alf(str);
 			system("pause");
 		}
