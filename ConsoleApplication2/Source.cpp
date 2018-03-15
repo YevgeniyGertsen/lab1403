@@ -4,12 +4,13 @@
 #include<time.h>
 #include<stdio.h>
 #include<windows.h>
+#include <conio.h>
 
 using namespace std;
 
 
 
-void main2()
+void main()
 {
 
 	//char * pt = NULL;
@@ -142,14 +143,23 @@ void main2()
 			раз и т.д.*/
 
 			char*str = (char*)calloc(10 * sizeof(char),sizeof(char));
-			int r = 0;
+			int r = 0, c=0;
 			cin.get();
 			printf("¬ведите строку \n");
 			
+			while (c != 13)
+			{
+				c = getch();
+				printf("%c", (char)c);
+				str = (char*)realloc(str, (r + 1) * sizeof(char));
+				str[r] = (char)c;
+				r++;
+			}
+			str[r] = '\0';
 
-			fgets(str,10,stdin);
+			//fgets(str,10,stdin);
 
-			printf("\n%s\n", str);
+			//printf("\n%s\n", str);
 
 
 			/*printf("%d", (int)str[r]);*/

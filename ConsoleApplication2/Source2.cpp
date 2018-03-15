@@ -3,7 +3,7 @@
 #include"Header1.h"
 #include <iostream>
 char f;
-void main()
+void main2()
 {
 	setlocale(LC_ALL, "RUS");
 	do

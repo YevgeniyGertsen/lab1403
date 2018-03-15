@@ -150,7 +150,7 @@ void alf(char*str)
 	{
 		printf("%d - %c\n", (int)i, i);
 	}*/
-	for (int i = 224;i <= 255;i++)
+	for (int i = 192;i <= 255;i++)
 	{
 		k = cSymb(str, (unsigned char)i);
 		if (k != 0)
