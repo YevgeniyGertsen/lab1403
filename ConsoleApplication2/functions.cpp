@@ -65,7 +65,9 @@ void replacestr(char *str, char * old, char * tonew)
 {
 	int count = 0;
 	int lenOld = strlen(old);
+	int lenToNew = strlen(tonew);
 	int strLen = strlen(str);
+	int start = 0;
 
 	for (int i = 0;i < strlen(str);i++)
 	{
@@ -88,11 +90,75 @@ void replacestr(char *str, char * old, char * tonew)
 				str = reallocDunamicChar(str, (strLen + different + 1));
 				if (str == NULL) break;
 				//Доделать 
+				for (int j = strlen(str) + 1;j > i;j--)
+				{
+					*(str + j) = *(str + j - 1);
+				}
+				*(str + strLen + different + 1) = '\0';
+				tonew = tonew - lenToNew;
+				for (int j = i - lenOld;j < i;j++)
+				{
+					*(str + j) = *(tonew);
+					tonew++;
+				}
+				printf("\n\n%d\n%s\n\n", strlen(str), str);
 			}
 			else if (different == 0)
 				for (int j = 0;j < lenOld;j++)
-					*(str+j) = *(tonew+j);
+					*(str + j) = *(tonew + j);
 		}
 	}
-	
+
+}
+
+static int cSymb(char*str, char symb)
+{
+	int count = 0;
+	for (int i = 0;i < strlen(str);i++)
+		if (*(str + i) == symb)count++;
+	return count;
+}
+
+void repl2(char*str)
+{
+	int c = cSymb(str, ' ');
+	str = (char*)realloc(str, sizeof(char)*(strlen(str) + c));
+	int kon = 0;
+	while (kon < strlen(str))
+	{
+		while (str[kon] != ' ')
+		{
+			if (kon != strlen(str))
+				kon++;
+			else break;
+		}
+		for (int i = strlen(str) + 1;i >= kon;i--)
+		{
+			*(str + i) = *(str + i - 1);
+		}
+		*(str + kon) = ',';
+		kon = kon + 2;
+	}
+	printf("\n\n%s\n", str);
+}
+
+void alf(char*str)
+{
+	unsigned char symb;
+	int k;
+	/*for (unsigned char i = 0;i <= 256;i++)
+	{
+		printf("%d - %c\n", (int)i, i);
+	}*/
+	for (int i = 224;i <= 255;i++)
+	{
+		k = cSymb(str, (unsigned char)i);
+		if (k != 0)
+		{
+			if (k > 1 && k < 5)
+				printf("Символ %c встречается %d раза\n", (unsigned char)i, k);
+			else
+				printf("Символ %c встречается %d раз\n", (unsigned char)i, k);
+		}
+	}
 }
