@@ -162,3 +162,73 @@ void alf(char*str)
 		}
 	}
 }
+
+int c = 89;
+
+int * testRef()
+{		
+	int b = 666;
+	return &b;
+}
+
+
+void sorU(int * mas, int j)
+{
+	int temp;
+
+	if (*(mas + j) < *(mas + j - 1))
+	{
+		temp = *(mas + j);
+		*(mas + j) = *(mas + j - 1);
+		*(mas + j - 1) = temp;
+	}
+}
+
+void sorD(int * mas, int j)
+{
+	int temp;
+
+	if (*(mas + j) > *(mas + j - 1))
+	{
+		temp = *(mas + j);
+		*(mas + j) = *(mas + j - 1);
+		*(mas + j - 1) = temp;
+	}
+}
+
+void sort(int * mas, int length,  void(*pt)(int *, int))
+{
+	for (int i = 0; i < length; i++)
+	{
+		for (int j = length - 1; j > i; j--)
+		{
+			if(pt !=NULL)
+				pt(mas, j);
+		}
+	}
+}
+
+
+
+void Poisk(char *mass, char * pt, int len)
+{
+	int j=0;
+	int s=0;
+	int k = 0;
+	for (int i = 0;i < len;i++)
+	{
+		if (*(mass + i) == ' ')
+		{
+			for (int l = 0;l < i;l++)
+			{
+				*(pt + k * 10 + l) = *(mass +s+l);
+			}			
+			//*(pt + k * 10 + l) = '\0';
+			s = i+1;
+			k++;
+		}
+		
+
+	}
+}
+

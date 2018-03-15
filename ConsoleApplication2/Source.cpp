@@ -9,7 +9,7 @@ using namespace std;
 
 
 
-void main()
+void main2()
 {
 
 	//char * pt = NULL;
