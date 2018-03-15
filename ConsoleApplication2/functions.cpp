@@ -1,4 +1,4 @@
-#include<iostream>
+ï»¿#include<iostream>
 #include<locale.h>
 #include"Header.h"
 #include<time.h>
@@ -46,28 +46,33 @@ void dinstr(char *str, int r)
 	}
 }
 
+int * createDunamic(int len)
+{
+	return (int *)malloc(len * sizeof(int));
+}
+
+char * createDunamicChar(int len)
+{
+	return (char *)malloc(len * sizeof(char));
+}
+
+char * reallocDunamicChar(char * str, int len)
+{
+	return (char*)realloc(str, len * sizeof(char));
+}
+
 void replacestr(char *str, char * old, char * tonew)
 {
 	int count = 0;
 	int lenOld = strlen(old);
-	char *newStr = str;
+	int strLen = strlen(str);
 
 	for (int i = 0;i < strlen(str);i++)
 	{
-		//ïåðâîå âõçîæäåíèå
 		if (str[i] == *old)
 		{
 			count++;
 			old++;
-			/*while (*old!='\0')
-			{
-				if (str[i] == *old)
-				{
-					old++;
-					
-				}
-				i++;
-			}*/
 		}
 		else
 		{
@@ -80,29 +85,13 @@ void replacestr(char *str, char * old, char * tonew)
 			int different = strlen(tonew) - lenOld;
 			if (different > 0)
 			{
-				/*printf("strlen before %d \n", strlen(str));
-				str = (char*)realloc(str, sizeof(char)*different);
+				str = reallocDunamicChar(str, (strLen + different + 1));
 				if (str == NULL) break;
-				printf("strlen after %d \n", strlen(str));
-				printf("%s \n", str);
-*/
-
-				//str[strlen(str)+1] = 
-
-				//for(int i=strlen(str);)
+				//Ð”Ð¾Ð´ÐµÐ»Ð°Ñ‚ÑŒ 
 			}
 			else if (different == 0)
-			{
-				tonew = tonew + strlen(tonew)-1;
 				for (int j = 0;j < lenOld;j++)
-				{
-					printf("%c - %c\n", newStr[i - j], *tonew);
-					newStr[i - j] = *tonew;
-					tonew--;
-				}
-			}
-
-				
+					*(str+j) = *(tonew+j);
 		}
 	}
 	

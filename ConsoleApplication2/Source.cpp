@@ -7,8 +7,24 @@
 using namespace std;
 
 
+
 void main()
 {
+
+	//char * pt = NULL;
+	//pt = (char*)malloc(8 * sizeof(char));
+	//strcpy(pt, "Test Page");
+
+	//printf("%s - strlen = %d\n", pt, strlen(pt));
+
+	//pt =(char*) realloc(pt, 10 * sizeof(char));
+	//pt = "Test Page##";
+	//printf("%s - strlen = %d\n", pt, strlen(pt));
+
+
+
+	//return;
+
 	setlocale(LC_ALL, "rus");
 	srand(time(NULL));
 	int n, exit;
@@ -32,10 +48,14 @@ void main()
 		case 2:
 		{
 			char * a = "<i>", *b = "<#>";
-			char * m = "<i><body><hr><ul><i>Чебурашка</i><i>Крокодил Гена</i><i>Шапокляк</i><i>Крыса Лариса</i></ul><hr></body>";
+			char * m = createDunamicChar(150);
+			strcpy(m, "<i><body><hr><ul><i>Чебурашка</i><i>Крокодил Гена</i><i>Шапокляк</i><i>Крыса Лариса</i></ul><hr></body>");
+			
+			printf("\n Before replace : %s \n", m);
+
 			replacestr(m, a, b);
 
-			printf("After replace : %s \n", m);
+			printf("\n After replace : %s \n", m);
 		}
 		break;
 		case 3:
